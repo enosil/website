@@ -132,7 +132,7 @@ fetch('gallery/photos.json')
       item.dataset.caption = photo.caption;
       var img = document.createElement('img');
       img.src = 'gallery/' + photo.file;
-      img.alt = photo.caption;
+      img.alt = '';
       img.loading = 'lazy';
       img.decoding = 'async';
       item.appendChild(img);
