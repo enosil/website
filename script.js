@@ -123,13 +123,8 @@ document.querySelectorAll('.tab-btn').forEach(function(btn) {
 
 /* ── FIRST LOAD ── */
 shuffleGallery();
-Promise.all(Array.from(gallery.querySelectorAll('img')).map(function(img) {
-  if (img.complete) return Promise.resolve();
-  return new Promise(function(r) { img.onload = r; img.onerror = r; });
-})).then(function() {
-  gallery.style.visibility = 'visible';
-  staggerReveal('scenery');
-});
+gallery.style.visibility = 'visible';
+staggerReveal('scenery');
 
 /* ── BACK TO TOP ── */
 var btt = document.getElementById('back-to-top');
