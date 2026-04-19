@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Eno Silverio</title>
+  <link rel="icon" type="image/png" href="images/favicon.png">
+  <meta name="description" content="Eno Silverio's personal website.">
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=IM+Fell+English:ital@0;1&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="desktop" id="desktop">
+    <div class="hero-logo-wrap">
+      <img class="hero-logo" src="images/enosil.png" alt="enosil">
+      <span class="hero-cursor"></span>
+    </div>
+    <span class="hero-name">Eno Silverio</span>
+    <a class="hero-email" href="mailto:hi@enosil.com">
+      <img src="images/email.png" alt="email">
+      <span>hi@enosil.com</span>
+    </a>
+    <div class="socials">
+      <a href="https://github.com/enosil" target="_blank"><img src="images/github.png" alt="github"></a>
+      <a href="https://linkedin.com/in/enosil" target="_blank"><img src="images/linkedin.png" alt="linkedin"></a>
+      <a href="https://bsky.app/profile/enosil.com" target="_blank"><img src="images/bluesky.png" alt="bluesky"></a>
+      <a href="https://instagram.com/enosil" target="_blank"><img src="images/instagram.png" alt="instagram"></a>
+      <a href="https://reddit.com/u/EnoSil" target="_blank"><img src="images/reddit.png" alt="reddit"></a>
+    </div>
+
+    <div class="dock">
+      <div class="dock-item" id="dock-photos" onclick="toggleWindow('photos')">
+        <img src="images/photoalbum.png" alt="">
+        <span>Photoalbum</span>
+        <div class="dot"></div>
+      </div>
+      <div class="dock-item" id="dock-apod" onclick="toggleWindow('apod')">
+        <img src="images/planet.png" alt="">
+        <span>Astronomy Picture of the Day</span>
+        <div class="dot"></div>
+      </div>
+      <div class="dock-item" id="dock-iss" onclick="toggleWindow('iss')">
+        <img src="images/satellite.svg" alt="">
+        <span>ISS Tracker</span>
+        <div class="dot"></div>
+      </div>
+      <div class="dock-item" id="dock-weather" onclick="toggleWindow('weather')">
+        <img src="images/weather.svg" alt="">
+        <span>Weather</span>
+        <div class="dot"></div>
+      </div>
+      <div class="dock-item" id="dock-news" onclick="toggleWindow('news')">
+        <img src="images/news.svg" alt="">
+        <span>News</span>
+        <div class="dot"></div>
+      </div>
+    </div>
+
+    <!-- photos window -->
+    <div class="window" id="win-photos" style="width: 750px; height: 550px; top: 40px; left: 300px;">
+      <div class="window-titlebar" data-window="photos">
+        <span class="window-title">Photoalbum</span>
+        <div class="window-controls">
+          <div class="window-btn minimize" onclick="minimizeWindow('photos')">&#8211;</div>
+          <div class="window-btn maximize" onclick="maximizeWindow('photos')">&#9633;</div>
+          <div class="window-btn close" onclick="closeWindow('photos')">&#10005;</div>
+        </div>
+      </div>
+      <div class="window-body" id="photos-body">
+        <div class="gallery-header">
+          <h2>Photoalbum</h2>
+          <p>Collection of pics taken by me</p>
+          <div class="tabs">
+            <button class="tab-btn active" data-tab="scenery">Scenery</button>
+            <button class="tab-btn" data-tab="pets">Pets</button>
+          </div>
+        </div>
+        <div class="gallery" id="gallery">
+          <div class="gallery-item" data-category="scenery" data-caption="Saint Lawrence, Macao - October 31, 2024"><img src="gallery/hongkongbuilding.jpg" alt=""></div>
+          <div class="gallery-item" data-category="scenery" data-caption="Central Park, New York City - September 10, 2025"><img src="gallery/centralpark.jpg" alt=""></div>
+          <div class="gallery-item" data-category="scenery" data-caption="Rockefeller Center, New York City - September 10, 2025"><img src="gallery/topoftherockview.jpg" alt=""></div>
+          <div class="gallery-item" data-category="scenery" data-caption="New York City - September 9, 2025"><img src="gallery/nycskyline.jpg" alt=""></div>
+          <div class="gallery-item" data-category="scenery" data-caption="Statue of Liberty, New York City - September 9, 2025"><img src="gallery/statue.jpg" alt=""></div>
+          <div class="gallery-item" data-category="scenery" data-caption="Empire Fulton Ferry, Brooklyn - September 9, 2025"><img src="gallery/brooklynbridge.jpg" alt=""></div>
+          <div class="gallery-item" data-category="scenery" data-caption="Dumbo, Brooklyn - September 9, 2025"><img src="gallery/dumbo.jpg" alt=""></div>
+          <div class="gallery-item" data-category="scenery" data-caption="Boracay - July 3, 2024"><img src="gallery/boracay.jpg" alt=""></div>
+          <div class="gallery-item" data-category="scenery" data-caption="Blue moon~ - April 2, 2026."><img src="gallery/moon.jpeg" alt=""></div>
+          <div class="gallery-item" data-category="scenery" data-caption="CNY with a view - February 4, 2026"><img src="gallery/cafeview.jpg" alt=""></div>
+          <div class="gallery-item" data-category="scenery" data-caption="Pasong Langka, Silang - January 4, 2026"><img src="gallery/tagaytaytree.jpg" alt=""></div>
+          <div class="gallery-item" data-category="pets" data-caption="Tongue Twister - December 25, 2025"><img src="gallery/oyo.jpg" alt=""></div>
+          <div class="gallery-item" data-category="scenery" data-caption="Above Canada - September 17, 2025"><img src="gallery/superman.jpg" alt=""></div>
+          <div class="gallery-item" data-category="scenery" data-caption="Niagara Falls, Canada - September 15, 2025"><img src="gallery/canada.jpg" alt=""></div>
+          <div class="gallery-item" data-category="scenery" data-caption="Niagara, Canada - September 15, 2025"><img src="gallery/canadatwo.jpg" alt=""></div>
+          <div class="gallery-item" data-category="scenery" data-caption="Carlton Gardens, Australia - July 3, 2025"><img src="gallery/australia.jpg" alt=""></div>
+          <div class="gallery-item" data-category="scenery" data-caption="Marikina City - May 18, 2025"><img src="gallery/bikeview.jpg" alt=""></div>
+          <div class="gallery-item" data-category="scenery" data-caption="Tagaytay City - May 2, 2025"><img src="gallery/tagaytayview.jpg" alt=""></div>
+          <div class="gallery-item" data-category="scenery" data-caption="San Jose, Tagaytay City - May 1, 2025"><img src="gallery/tagaytayroof.jpg" alt=""></div>
+          <div class="gallery-item" data-category="scenery" data-caption="Mong Kok East, Hong Kong - November 1, 2024"><img src="gallery/hongkongcity.jpg" alt=""></div>
+          <div class="gallery-item" data-category="scenery" data-caption="Saint Lawrence, Macao - October 31, 2024"><img src="gallery/macautower.jpg" alt=""></div>
+          <div class="gallery-item" data-category="scenery" data-caption="Laurel Island, Boracay - July 5, 2024"><img src="gallery/boracaydrink.jpg" alt=""></div>
+          <div class="gallery-item" data-category="pets" data-caption="Happy family - March 6, 2024"><img src="gallery/cats.jpg" alt=""></div>
+          <div class="gallery-item" data-category="scenery" data-caption="Cozy - January 12, 2025"><img src="gallery/biketree.jpg" alt=""></div>
+          <div class="gallery-item" data-category="pets" data-caption="Which direction are you looking at? - February 19, 2025"><img src="gallery/tofu.jpeg" alt=""></div>
+          <div class="gallery-item" data-category="pets" data-caption="Oreo - February 19, 2025"><img src="gallery/sittingoreo.jpeg" alt=""></div>
+          <div class="gallery-item" data-category="scenery" data-caption="Pot of gold - August 17, 2023"><img src="gallery/rainbow.jpg" alt=""></div>
+          <div class="gallery-item" data-category="scenery" data-caption="Very purple night, The Distillery, Toronto - September 13, 2025"><img src="gallery/purple.jpg" alt=""></div>
+          <div class="gallery-item" data-category="scenery" data-caption="Sharp needle - September 12, 2025"><img src="gallery/torontoskyline.jpg" alt=""></div>
+          <div class="gallery-item" data-category="scenery" data-caption="What a window - September 7, 2025"><img src="gallery/windowplane.jpg" alt=""></div>
+          <div class="gallery-item" data-category="scenery" data-caption="Top of the Empire State, New York City - September 8, 2025"><img src="gallery/bigcity.jpg" alt=""></div>
+          <div class="gallery-item" data-category="scenery" data-caption="Blue sky - April 8, 2024"><img src="gallery/blue.jpg" alt=""></div>
+          <div class="gallery-item" data-category="scenery" data-caption="Pretty bike view - March 6, 2024"><img src="gallery/bikeday.jpg" alt=""></div>
+        </div>
+      </div>
+      <div class="window-footer" id="photos-footer">
+        <button class="win-back-to-top" id="win-btt">&#8593; top</button>
+      </div>
+      <div class="window-resize" data-window="photos"></div>
+    </div>
+
+    <!-- apod window -->
+    <div class="window" id="win-apod" style="width: 600px; height: 500px; top: 60px; left: 250px;">
+      <div class="window-titlebar" data-window="apod">
+        <span class="window-title">Astronomy Picture of the Day</span>
+        <div class="window-controls">
+          <div class="window-btn minimize" onclick="minimizeWindow('apod')">&#8211;</div>
+          <div class="window-btn maximize" onclick="maximizeWindow('apod')">&#9633;</div>
+          <div class="window-btn close" onclick="closeWindow('apod')">&#10005;</div>
+        </div>
+      </div>
+      <div class="window-body" id="apod-body">
+        <div class="apod-content" id="apod-content">
+          <div class="apod-loading" id="apod-loading">loading today's image...</div>
+        </div>
+      </div>
+      <div class="window-resize" data-window="apod"></div>
+    </div>
+
+    <!-- news window -->
+    <div class="window" id="win-news" style="width: 500px; height: 480px; top: 60px; left: 280px;">
+      <div class="window-titlebar" data-window="news">
+        <span class="window-title">News</span>
+        <div class="window-controls">
+          <div class="window-btn minimize" onclick="minimizeWindow('news')">&#8211;</div>
+          <div class="window-btn maximize" onclick="maximizeWindow('news')">&#9633;</div>
+          <div class="window-btn close" onclick="closeWindow('news')">&#10005;</div>
+        </div>
+      </div>
+      <div class="window-body" id="news-body">
+        <div class="news-content" id="news-content">
+          <div class="news-loading" id="news-loading">loading headlines...</div>
+        </div>
+      </div>
+      <div class="window-resize" data-window="news"></div>
+    </div>
+
+    <!-- weather window -->
+    <div class="window" id="win-weather" style="width: 420px; height: 380px; top: 80px; left: 350px;">
+      <div class="window-titlebar" data-window="weather">
+        <span class="window-title">Weather</span>
+        <div class="window-controls">
+          <div class="window-btn minimize" onclick="minimizeWindow('weather')">&#8211;</div>
+          <div class="window-btn maximize" onclick="maximizeWindow('weather')">&#9633;</div>
+          <div class="window-btn close" onclick="closeWindow('weather')">&#10005;</div>
+        </div>
+      </div>
+      <div class="window-body" id="weather-body">
+        <div class="weather-content" id="weather-content">
+          <div class="weather-search">
+            <input type="text" id="weather-input" placeholder="enter a city..." autocomplete="off">
+            <button id="weather-btn" onclick="searchWeather()">go</button>
+          </div>
+          <div id="weather-result"></div>
+        </div>
+      </div>
+      <div class="window-resize" data-window="weather"></div>
+    </div>
+
+    <!-- iss window -->
+    <div class="window" id="win-iss" style="width: 750px; height: 550px; top: 50px; left: 200px;">
+      <div class="window-titlebar" data-window="iss">
+        <span class="window-title">ISS Tracker</span>
+        <div class="window-controls">
+          <div class="window-btn minimize" onclick="minimizeWindow('iss')">&#8211;</div>
+          <div class="window-btn maximize" onclick="maximizeWindow('iss')">&#9633;</div>
+          <div class="window-btn close" onclick="closeWindow('iss')">&#10005;</div>
+        </div>
+      </div>
+      <div class="window-body" id="iss-body" style="overflow:hidden;">
+        <div class="iss-loading" id="iss-loading">
+          <div class="iss-loading-text">locating ISS...</div>
+        </div>
+        <div id="iss-map"></div>
+        <div class="iss-info" id="iss-info">
+          <div class="iss-info-title">International Space Station</div>
+          <div class="iss-info-row"><span class="iss-label">lat</span><span id="iss-lat">--</span></div>
+          <div class="iss-info-row"><span class="iss-label">lon</span><span id="iss-lon">--</span></div>
+          <div class="iss-info-row"><span class="iss-label">alt</span><span id="iss-alt">--</span></div>
+          <div class="iss-info-row"><span class="iss-label">speed</span><span id="iss-vel">--</span></div>
+          <div class="iss-info-row"><span class="iss-label">visibility</span><span id="iss-vis">--</span></div>
+        </div>
+        <button class="iss-follow-btn" id="iss-follow-btn" title="Re-center on ISS">&#9678; follow</button>
+      </div>
+      <div class="window-resize" data-window="iss"></div>
+    </div>
+  </div>
+
+  <!-- lightbox -->
+  <div class="lightbox" id="lightbox">
+    <span class="lightbox-close" id="lb-close">[ close ]</span>
+    <span class="lightbox-prev" id="lb-prev">&lt;&lt;</span>
+    <img id="lb-img" src="" alt="">
+    <span class="lightbox-next" id="lb-next">&gt;&gt;</span>
+    <span class="lightbox-counter" id="lb-counter"></span>
+    <span class="lightbox-caption" id="lb-caption"></span>
+  </div>
+
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>
