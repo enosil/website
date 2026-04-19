@@ -1,0 +1,39 @@
+name: Optimize gallery images
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'gallery/**'
+
+permissions:
+  contents: write
+
+jobs:
+  optimize:
+    runs-on: ubuntu-latest
+    if: "!contains(github.event.head_commit.message, '[skip ci]')"
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Install Pillow
+        run: pip install Pillow
+
+      - name: Run optimize script
+        run: python scripts/optimize.py
+
+      - name: Commit changes if any
+        run: |
+          git config user.name  "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add gallery/
+          git diff --cached --quiet || \
+            git commit -m "chore: auto-optimize gallery images [skip ci]"
+          git push
