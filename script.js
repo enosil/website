@@ -122,9 +122,27 @@ document.querySelectorAll('.tab-btn').forEach(function(btn) {
 });
 
 /* ── FIRST LOAD ── */
-shuffleGallery();
-gallery.style.visibility = 'visible';
-staggerReveal('scenery');
+fetch('gallery/photos.json')
+  .then(function(res) { return res.json(); })
+  .then(function(photos) {
+    photos.forEach(function(photo) {
+      var item = document.createElement('div');
+      item.className = 'gallery-item';
+      item.dataset.category = photo.category;
+      item.dataset.caption = photo.caption;
+      var img = document.createElement('img');
+      img.src = 'gallery/' + photo.file;
+      img.alt = '';
+      img.loading = 'lazy';
+      img.decoding = 'async';
+      item.appendChild(img);
+      gallery.appendChild(item);
+    });
+    shuffleGallery();
+    gallery.style.visibility = 'visible';
+    staggerReveal('scenery');
+  })
+  .catch(function() { gallery.style.visibility = 'visible'; });
 
 /* ── BACK TO TOP ── */
 var btt = document.getElementById('back-to-top');
@@ -206,14 +224,16 @@ ctxMenu.style.cssText = 'position:fixed;background:#000;color:#e8e4dc;font-famil
 ctxMenu.textContent = "eno's pics";
 document.body.appendChild(ctxMenu);
 
-document.querySelectorAll('.gallery-item img').forEach(function(img) {
-  img.addEventListener('contextmenu', function(e) {
-    e.preventDefault();
-    ctxMenu.style.left = e.clientX + 'px';
-    ctxMenu.style.top = e.clientY + 'px';
-    ctxMenu.style.display = 'block';
-  });
-  img.addEventListener('dragstart', function(e) { e.preventDefault(); });
+gallery.addEventListener('contextmenu', function(e) {
+  if (!e.target.closest('.gallery-item img')) return;
+  e.preventDefault();
+  ctxMenu.style.left = e.clientX + 'px';
+  ctxMenu.style.top = e.clientY + 'px';
+  ctxMenu.style.display = 'block';
+});
+
+gallery.addEventListener('dragstart', function(e) {
+  if (e.target.closest('.gallery-item img')) e.preventDefault();
 });
 
 document.addEventListener('click', function() { ctxMenu.style.display = 'none'; });
