@@ -48,11 +48,14 @@ document.getElementById('lb-next').addEventListener('click', function(e) {
 });
 
 document.addEventListener('keydown', function(e) {
+  if (e.key === 'Escape') {
+    if (lightbox.classList.contains('open')) { lbClose(); return; }
+    if (apodModal.classList.contains('open')) { closeApodModal(); return; }
+  }
   if (!lightbox.classList.contains('open')) return;
   var all = items();
   if (e.key === 'ArrowLeft') lbOpen((current - 1 + all.length) % all.length);
   if (e.key === 'ArrowRight') lbOpen((current + 1) % all.length);
-  if (e.key === 'Escape') lbClose();
 });
 
 /* ── SHUFFLE ── */
@@ -141,6 +144,9 @@ btt.addEventListener('click', function() {
 
 /* ── APOD ── */
 var APOD_URL = 'https://apod-proxy.eno-0b7.workers.dev';
+var apodLoaded = false;
+var apodModal = document.getElementById('apod-modal');
+var apodPanel = document.getElementById('apod-modal-panel');
 
 function fetchAPOD() {
   var content = document.getElementById('apod-content');
@@ -151,6 +157,7 @@ function fetchAPOD() {
         content.innerHTML = '<div class="apod-loading">NASA API is temporarily unavailable. try again later.</div>';
         return;
       }
+      apodLoaded = true;
       var html = '';
       if (data.media_type === 'video') {
         html += '<div class="apod-image-wrap"><iframe src="' + data.url + '" allowfullscreen></iframe></div>';
@@ -169,6 +176,18 @@ function fetchAPOD() {
     });
 }
 
+function openApodModal() {
+  apodModal.classList.add('open');
+  document.body.style.overflow = 'hidden';
+  if (!apodLoaded) fetchAPOD();
+}
+
+function closeApodModal() {
+  apodModal.classList.remove('open');
+  document.body.style.overflow = '';
+  apodPanel.scrollTop = 0;
+}
+
 function openApodLightbox(src) {
   lbImg.classList.remove('loaded');
   lbImg.src = src;
@@ -180,7 +199,11 @@ function openApodLightbox(src) {
   document.getElementById('lb-next').style.display = 'none';
 }
 
-fetchAPOD();
+document.getElementById('hero-apod-btn').addEventListener('click', openApodModal);
+document.getElementById('apod-close').addEventListener('click', closeApodModal);
+apodModal.addEventListener('click', function(e) {
+  if (e.target === apodModal) closeApodModal();
+});
 
 /* ── CUSTOM RIGHT-CLICK ── */
 var ctxMenu = document.createElement('div');

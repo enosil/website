@@ -28,17 +28,8 @@
       <a href="https://instagram.com/enosil" target="_blank"><img src="images/instagram.png" alt="instagram"></a>
       <a href="https://reddit.com/u/EnoSil" target="_blank"><img src="images/reddit.png" alt="reddit"></a>
     </div>
-    <a class="hero-scroll" href="#apod">scroll &#8595;</a>
-  </section>
-
-  <section class="section" id="apod">
-    <div class="section-header">
-      <h2>Astronomy Picture of the Day</h2>
-      <p>NASA's featured image, updated daily</p>
-    </div>
-    <div class="apod-content" id="apod-content">
-      <div class="apod-loading" id="apod-loading">loading today's image...</div>
-    </div>
+    <button class="hero-apod-btn" id="hero-apod-btn" type="button">[ today's apod &#8594; ]</button>
+    <a class="hero-scroll" href="#photos">scroll &#8595;</a>
   </section>
 
   <section class="section" id="photos">
@@ -88,6 +79,15 @@
   </section>
 
   <button class="back-to-top" id="back-to-top">&#8593; top</button>
+
+  <div class="apod-modal" id="apod-modal">
+    <div class="apod-modal-panel" id="apod-modal-panel">
+      <button class="apod-modal-close" id="apod-close" type="button" aria-label="close">&#10005;</button>
+      <div class="apod-content" id="apod-content">
+        <div class="apod-loading" id="apod-loading">loading today's image...</div>
+      </div>
+    </div>
+  </div>
 
   <div class="lightbox" id="lightbox">
     <span class="lightbox-close" id="lb-close">[ close ]</span>

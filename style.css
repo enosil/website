@@ -99,6 +99,27 @@ html {
 .socials a:hover { opacity: 0.6; }
 .socials a img { width: 18px; height: 18px; object-fit: contain; }
 
+.hero-apod-btn {
+  background: none;
+  border: 1px solid #282828;
+  color: #aaa;
+  font-family: 'Share Tech Mono', monospace;
+  font-size: 0.72rem;
+  letter-spacing: 0.14em;
+  padding: 0.55rem 1.1rem;
+  cursor: pointer;
+  margin-top: 2rem;
+  opacity: 0;
+  animation: fadein 0.8s 1.1s forwards;
+  transition: border-color 0.2s, color 0.2s, background 0.2s;
+}
+
+.hero-apod-btn:hover {
+  border-color: #e8e4dc;
+  color: #fff;
+  background: rgba(255, 255, 255, 0.04);
+}
+
 .hero-scroll {
   position: absolute;
   bottom: 2rem;
@@ -283,6 +304,53 @@ html {
   border-color: #444;
 }
 
+/* apod modal */
+.apod-modal {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.88);
+  z-index: 1500;
+  align-items: flex-start;
+  justify-content: center;
+  padding: 3rem 1.5rem;
+  overflow-y: auto;
+}
+
+.apod-modal.open { display: flex; }
+
+.apod-modal-panel {
+  position: relative;
+  background: #000;
+  border: 1px solid #222;
+  max-width: 720px;
+  width: 100%;
+  padding: 2.2rem 2rem 2rem;
+  margin: auto;
+  user-select: text;
+  box-shadow: 0 8px 40px rgba(0, 0, 0, 0.6);
+}
+
+.apod-modal-close {
+  position: absolute;
+  top: 0.6rem;
+  right: 0.6rem;
+  width: 32px;
+  height: 28px;
+  background: none;
+  border: none;
+  color: #555;
+  font-family: 'Share Tech Mono', monospace;
+  font-size: 0.85rem;
+  cursor: pointer;
+  transition: color 0.2s, background 0.2s;
+}
+
+.apod-modal-close:hover {
+  color: #fff;
+  background: #c42b1c;
+}
+
 /* lightbox */
 .lightbox {
   display: none;
@@ -438,6 +506,20 @@ html {
 
   .apod-desc {
     font-size: 0.76rem;
+  }
+
+  .hero-apod-btn {
+    margin-top: 1.5rem;
+    font-size: 0.65rem;
+    padding: 0.5rem 0.9rem;
+  }
+
+  .apod-modal {
+    padding: 1.5rem 0.8rem;
+  }
+
+  .apod-modal-panel {
+    padding: 1.6rem 1.2rem 1.2rem;
   }
 
   .back-to-top {
