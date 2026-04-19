@@ -27,6 +27,7 @@ html {
 }
 
 .hero-logo-wrap {
+  position: relative;
   display: inline-flex;
   align-items: flex-end;
   margin-bottom: 1.5rem;
