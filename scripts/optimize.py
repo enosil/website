@@ -22,7 +22,7 @@ GALLERY_DIR = Path(__file__).resolve().parent.parent / "gallery"
 PHOTOS_JSON = GALLERY_DIR / "photos.json"
 MAX_SIZE = 1600
 QUALITY = 82
-SOURCE_EXTS = {".jpg", ".jpeg", ".png"}
+SOURCE_EXTS = {".jpg", ".jpeg", ".png", ".heic"}
 
 
 def load_photos():
