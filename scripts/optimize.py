@@ -18,6 +18,12 @@ try:
 except ImportError:
     sys.exit("Pillow is required: pip install Pillow")
 
+try:
+    from pillow_heif import register_heif_opener
+    register_heif_opener()
+except ImportError:
+    pass
+
 GALLERY_DIR = Path(__file__).resolve().parent.parent / "gallery"
 PHOTOS_JSON = GALLERY_DIR / "photos.json"
 MAX_SIZE = 1600
