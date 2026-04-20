@@ -24,7 +24,7 @@ jobs:
           python-version: '3.12'
 
       - name: Install Pillow
-        run: pip install Pillow
+        run: pip install Pillow pillow-heif
 
       - name: Run optimize script
         run: python scripts/optimize.py
