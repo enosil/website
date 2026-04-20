@@ -113,7 +113,12 @@ html {
   opacity: 0;
   animation: fadein 0.8s 1.1s forwards;
   transition: border-color 0.2s, color 0.2s, background 0.2s;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
 }
+
+.hero-apod-btn img { width: 16px; height: 16px; object-fit: contain; }
 
 .hero-apod-btn:hover {
   border-color: #e8e4dc;
