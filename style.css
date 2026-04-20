@@ -30,7 +30,7 @@ html {
   position: relative;
   display: inline-flex;
   align-items: flex-end;
-  margin-bottom: 1.5rem;
+  margin-bottom: 2.8rem;
 }
 
 .hero-logo {
@@ -131,16 +131,11 @@ html {
   font-size: 0.65rem;
   letter-spacing: 0.2em;
   opacity: 0;
-  animation: fadein 1s 1.6s forwards, bob 2.4s 1.6s ease-in-out infinite;
+  animation: fadein 1s 1.6s forwards;
   transition: color 0.2s;
 }
 
 .hero-scroll:hover { color: #e8e4dc; }
-
-@keyframes bob {
-  0%, 100% { transform: translate(-50%, 0); }
-  50% { transform: translate(-50%, 6px); }
-}
 
 /* sections */
 .section {
