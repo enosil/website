@@ -407,15 +407,6 @@ html {
 .lightbox-next { right: 1.2rem; }
 .lightbox-prev:hover, .lightbox-next:hover { color: #e8e4dc; }
 
-.lightbox-counter {
-  position: fixed;
-  bottom: 2.4rem;
-  left: 50%;
-  transform: translateX(-50%);
-  font-size: 0.48rem;
-  color: #444;
-  letter-spacing: 0.12em;
-}
 
 .lightbox-caption {
   position: fixed;
