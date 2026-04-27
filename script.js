@@ -2,7 +2,6 @@
 var gallery = document.getElementById('gallery');
 var lightbox = document.getElementById('lightbox');
 var lbImg = document.getElementById('lb-img');
-var lbCount = document.getElementById('lb-counter');
 var lbCap = document.getElementById('lb-caption');
 var current = 0;
 
@@ -16,7 +15,6 @@ function lbOpen(index) {
   lbImg.classList.remove('loaded');
   lbImg.src = item.querySelector('img').src;
   lbImg.onload = function() { lbImg.classList.add('loaded'); };
-  lbCount.textContent = (index + 1) + ' / ' + all.length;
   lbCap.textContent = item.dataset.caption || '';
   lightbox.classList.add('open');
 }
