@@ -1,0 +1,531 @@
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html, body {
+  background: #000000;
+  color: #e8e4dc;
+  font-family: 'Share Tech Mono', monospace;
+  user-select: none;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+/* hero */
+.hero {
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+}
+
+.hero-logo-wrap {
+  position: relative;
+  display: inline-flex;
+  align-items: flex-end;
+  margin-bottom: 2.8rem;
+}
+
+.hero-logo {
+  position: relative;
+  width: min(520px, 82vw);
+  image-rendering: pixelated;
+  opacity: 0;
+  animation: fadein 1s 0.3s forwards;
+  display: block;
+}
+
+.hero-cursor {
+  position: absolute;
+  right: -83px;
+  bottom: 8px;
+  width: 75px;
+  height: 14px;
+  background: #e8e4dc;
+  opacity: 0;
+  animation: fadein 0s 1.4s forwards, blink 1.1s 1.4s step-end infinite;
+}
+
+.hero-name {
+  font-family: 'IM Fell English', serif;
+  font-size: clamp(2.2rem, 6vw, 4.5rem);
+  font-weight: 400;
+  color: #e8e4dc;
+  letter-spacing: 0.06em;
+  opacity: 0;
+  animation: fadein 1s 0.6s forwards;
+}
+
+.hero-email {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  margin-top: 1rem;
+  text-decoration: none;
+  color: #e8e4dc;
+  font-family: 'Share Tech Mono', monospace;
+  font-size: clamp(1rem, 2.5vw, 1.4rem);
+  opacity: 0;
+  animation: fadein 0.8s 0.8s forwards;
+  transition: opacity 0.2s;
+}
+
+.hero-email:hover { opacity: 0.7; }
+.hero-email img { width: 22px; height: 22px; object-fit: contain; }
+
+.socials {
+  display: flex;
+  align-items: center;
+  gap: 1.1rem;
+  opacity: 0;
+  animation: fadein 0.8s 0.9s forwards;
+  margin-top: 1.6rem;
+}
+
+.socials a {
+  display: flex;
+  align-items: center;
+  opacity: 1;
+  transition: opacity 0.2s;
+  text-decoration: none;
+}
+
+.socials a:hover { opacity: 0.6; }
+.socials a img { width: 18px; height: 18px; object-fit: contain; }
+
+.hero-apod-btn {
+  background: none;
+  border: 1px solid #282828;
+  color: #aaa;
+  font-family: 'Share Tech Mono', monospace;
+  font-size: 0.72rem;
+  letter-spacing: 0.14em;
+  padding: 0.55rem 1.1rem;
+  cursor: pointer;
+  margin-top: 2rem;
+  opacity: 0;
+  animation: fadein 0.8s 1.1s forwards;
+  transition: border-color 0.2s, color 0.2s, background 0.2s;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.hero-apod-btn img { width: 16px; height: 16px; object-fit: contain; }
+
+.hero-apod-btn:hover {
+  border-color: #e8e4dc;
+  color: #fff;
+  background: rgba(255, 255, 255, 0.04);
+}
+
+.hero-scroll {
+  position: absolute;
+  bottom: 2rem;
+  left: 50%;
+  transform: translateX(-50%);
+  color: #888;
+  text-decoration: none;
+  font-size: 0.65rem;
+  letter-spacing: 0.2em;
+  opacity: 0;
+  animation: fadein 1s 1.6s forwards;
+  transition: color 0.2s;
+}
+
+.hero-scroll:hover { color: #e8e4dc; }
+
+/* sections */
+.section {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 5rem 1.6rem;
+  border-top: 1px solid #1a1a1a;
+}
+
+.section-header {
+  margin-bottom: 2rem;
+}
+
+.section-header h2 {
+  font-family: 'IM Fell English', serif;
+  font-size: clamp(1.6rem, 4vw, 2.2rem);
+  font-weight: 400;
+  color: #fff;
+  letter-spacing: 0.04em;
+  margin-bottom: 0.4rem;
+}
+
+.section-header p {
+  font-size: 0.75rem;
+  color: #aaa;
+  letter-spacing: 0.1em;
+  line-height: 1.7;
+}
+
+.tabs {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  margin-top: 1.4rem;
+  flex-wrap: wrap;
+}
+
+.tab-btn {
+  background: none;
+  border: 1px solid #282828;
+  color: #aaa;
+  font-family: 'Share Tech Mono', monospace;
+  font-size: 0.7rem;
+  letter-spacing: 0.12em;
+  padding: 0.4rem 0.8rem;
+  cursor: pointer;
+  transition: border-color 0.2s, color 0.2s;
+}
+
+.tab-btn:hover { border-color: #666; color: #e8e4dc; }
+.tab-btn.active { border-color: #e8e4dc; color: #fff; }
+
+/* gallery */
+.gallery {
+  columns: 3;
+  column-gap: 5px;
+  visibility: hidden;
+}
+
+.gallery-item {
+  break-inside: avoid;
+  margin-bottom: 5px;
+  cursor: pointer;
+  overflow: hidden;
+  display: block;
+}
+
+.gallery-item.hidden { display: none; }
+.gallery-item.pending { opacity: 0; visibility: hidden; }
+
+@keyframes popin {
+  0% { opacity: 0; transform: scale(0.92); }
+  60% { opacity: 1; transform: scale(1.02); }
+  100% { opacity: 1; transform: scale(1); }
+}
+
+.gallery-item.popin { animation: popin 0.35s ease both; }
+.gallery-item img { width: 100%; display: block; transition: opacity 0.3s; }
+.gallery-item:hover img { opacity: 0.7; }
+
+/* apod */
+.apod-loading {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 200px;
+  font-size: 0.75rem;
+  color: #aaa;
+  letter-spacing: 0.12em;
+}
+
+.apod-image-wrap {
+  width: 100%;
+  margin-bottom: 1.2rem;
+  max-width: 800px;
+}
+
+.apod-image-wrap img { width: 100%; display: block; cursor: pointer; transition: opacity 0.3s; }
+.apod-image-wrap img:hover { opacity: 0.8; }
+.apod-image-wrap iframe { width: 100%; aspect-ratio: 16/9; border: none; }
+
+.apod-title {
+  font-family: 'IM Fell English', serif;
+  font-size: 1.4rem;
+  font-weight: 400;
+  color: #fff;
+  letter-spacing: 0.04em;
+  margin-bottom: 0.3rem;
+}
+
+.apod-date {
+  font-size: 0.7rem;
+  color: #aaa;
+  letter-spacing: 0.12em;
+  margin-bottom: 1rem;
+}
+
+.apod-desc {
+  font-size: 0.82rem;
+  color: #e8e4dc;
+  line-height: 1.8;
+  letter-spacing: 0.04em;
+  max-width: 70ch;
+}
+
+.apod-credit {
+  margin-top: 1.2rem;
+  font-size: 0.6rem;
+  color: #888;
+  letter-spacing: 0.1em;
+}
+
+.apod-credit a { color: #aaa; text-decoration: none; transition: color 0.2s; }
+.apod-credit a:hover { color: #fff; }
+
+/* back to top */
+.back-to-top {
+  position: fixed;
+  bottom: 1.4rem;
+  right: 1.4rem;
+  background: rgba(0, 0, 0, 0.82);
+  border: 1px solid #222;
+  color: #888;
+  font-family: 'Share Tech Mono', monospace;
+  font-size: 0.65rem;
+  letter-spacing: 0.14em;
+  padding: 0.6rem 0.9rem;
+  cursor: pointer;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.25s, color 0.2s, border-color 0.2s;
+  z-index: 500;
+}
+
+.back-to-top.visible {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.back-to-top:hover {
+  color: #e8e4dc;
+  border-color: #444;
+}
+
+/* apod modal */
+.apod-modal {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.88);
+  z-index: 1500;
+  align-items: flex-start;
+  justify-content: center;
+  padding: 3rem 1.5rem;
+  overflow-y: auto;
+}
+
+.apod-modal.open { display: flex; }
+
+.apod-modal-panel {
+  position: relative;
+  background: #000;
+  border: 1px solid #222;
+  max-width: 720px;
+  width: 100%;
+  padding: 2.2rem 2rem 2rem;
+  margin: auto;
+  user-select: text;
+  box-shadow: 0 8px 40px rgba(0, 0, 0, 0.6);
+}
+
+.apod-modal-close {
+  position: absolute;
+  top: 0.6rem;
+  right: 0.6rem;
+  width: 32px;
+  height: 28px;
+  background: none;
+  border: none;
+  color: #555;
+  font-family: 'Share Tech Mono', monospace;
+  font-size: 0.85rem;
+  cursor: pointer;
+  transition: color 0.2s, background 0.2s;
+}
+
+.apod-modal-close:hover {
+  color: #fff;
+  background: #c42b1c;
+}
+
+/* lightbox */
+.lightbox {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.96);
+  z-index: 2000;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+.lightbox.open { display: flex; }
+
+.lightbox img {
+  max-width: 90vw;
+  max-height: 90vh;
+  object-fit: contain;
+  cursor: default;
+  opacity: 0;
+  transition: opacity 0.25s;
+}
+
+.lightbox img.loaded { opacity: 1; }
+
+.lightbox-close {
+  position: fixed;
+  top: 1.4rem;
+  right: 1.8rem;
+  font-size: 0.58rem;
+  color: #555;
+  letter-spacing: 0.14em;
+  cursor: pointer;
+  transition: color 0.2s;
+}
+
+.lightbox-close:hover { color: #e8e4dc; }
+
+.lightbox-prev, .lightbox-next {
+  position: fixed;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 0.55rem;
+  color: #444;
+  letter-spacing: 0.1em;
+  cursor: pointer;
+  transition: color 0.2s;
+  user-select: none;
+  padding: 1rem;
+}
+
+.lightbox-prev { left: 1.2rem; }
+.lightbox-next { right: 1.2rem; }
+.lightbox-prev:hover, .lightbox-next:hover { color: #e8e4dc; }
+
+.lightbox-counter {
+  position: fixed;
+  bottom: 2.4rem;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 0.48rem;
+  color: #444;
+  letter-spacing: 0.12em;
+}
+
+.lightbox-caption {
+  position: fixed;
+  bottom: 1rem;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 0.58rem;
+  color: #e8e4dc;
+  letter-spacing: 0.06em;
+  text-align: center;
+  max-width: 80vw;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* scrollbar */
+::-webkit-scrollbar { width: 8px; }
+::-webkit-scrollbar-track { background: #000; }
+::-webkit-scrollbar-thumb { background: #222; border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: #333; }
+
+@keyframes fadein {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
+
+/* ── MOBILE ── */
+@media (max-width: 768px) {
+  .hero {
+    padding: 1.5rem;
+  }
+
+  .hero-logo {
+    width: min(320px, 70vw);
+  }
+
+  .hero-cursor {
+    right: -50px;
+    bottom: 5px;
+    width: 45px;
+    height: 10px;
+  }
+
+  .hero-name {
+    font-size: clamp(1.6rem, 8vw, 2.4rem);
+  }
+
+  .hero-email {
+    font-size: clamp(0.8rem, 3vw, 1rem);
+  }
+
+  .hero-email img {
+    width: 16px;
+    height: 16px;
+  }
+
+  .socials {
+    gap: 0.8rem;
+    margin-top: 1.2rem;
+  }
+
+  .socials a img {
+    width: 16px;
+    height: 16px;
+  }
+
+  .section {
+    padding: 3rem 1rem;
+  }
+
+  .section-header {
+    margin-bottom: 1.4rem;
+  }
+
+  .gallery {
+    columns: 2;
+    column-gap: 4px;
+  }
+
+  .apod-title {
+    font-size: 1.2rem;
+  }
+
+  .apod-desc {
+    font-size: 0.76rem;
+  }
+
+  .hero-apod-btn {
+    margin-top: 1.5rem;
+    font-size: 0.65rem;
+    padding: 0.5rem 0.9rem;
+  }
+
+  .apod-modal {
+    padding: 1.5rem 0.8rem;
+  }
+
+  .apod-modal-panel {
+    padding: 1.6rem 1.2rem 1.2rem;
+  }
+
+  .back-to-top {
+    bottom: 1rem;
+    right: 1rem;
+    padding: 0.5rem 0.8rem;
+  }
+}

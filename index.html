@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Eno Silverio</title>
+  <link rel="icon" type="image/png" href="images/favicon.png">
+  <meta name="description" content="Eno Silverio's personal website.">
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=IM+Fell+English:ital@0;1&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <section class="hero">
+    <div class="hero-logo-wrap">
+      <img class="hero-logo" src="images/enosil.png" alt="enosil">
+      <span class="hero-cursor"></span>
+    </div>
+    <span class="hero-name">Eno Silverio</span>
+    <a class="hero-email" href="mailto:hi@enosil.com">
+      <img src="images/email.png" alt="email">
+      <span>hi@enosil.com</span>
+    </a>
+    <div class="socials">
+      <a href="https://github.com/enosil" target="_blank"><img src="images/github.png" alt="github"></a>
+      <a href="https://linkedin.com/in/enosil" target="_blank"><img src="images/linkedin.png" alt="linkedin"></a>
+      <a href="https://bsky.app/profile/enosil.com" target="_blank"><img src="images/bluesky.png" alt="bluesky"></a>
+      <a href="https://instagram.com/enosil" target="_blank"><img src="images/instagram.png" alt="instagram"></a>
+      <a href="https://reddit.com/u/EnoSil" target="_blank"><img src="images/reddit.png" alt="reddit"></a>
+    </div>
+    <button class="hero-apod-btn" id="hero-apod-btn" type="button">
+      <img src="images/apod.png" alt="">
+      <span>Astronomy Picture of the Day</span>
+    </button>
+    <a class="hero-scroll" href="#photos">scroll &#8595;</a>
+  </section>
+
+  <section class="section" id="photos">
+    <div class="section-header">
+      <h2>Photoalbum</h2>
+      <p>Collection of pics taken by me</p>
+      <div class="tabs">
+        <button class="tab-btn active" data-tab="scenery">Scenery</button>
+        <button class="tab-btn" data-tab="pets">Pets</button>
+      </div>
+    </div>
+    <div class="gallery" id="gallery"></div>
+  </section>
+
+  <button class="back-to-top" id="back-to-top">&#8593; top</button>
+
+  <div class="apod-modal" id="apod-modal">
+    <div class="apod-modal-panel" id="apod-modal-panel">
+      <button class="apod-modal-close" id="apod-close" type="button" aria-label="close">&#10005;</button>
+      <div class="apod-content" id="apod-content">
+        <div class="apod-loading" id="apod-loading">loading today's image...</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="lightbox" id="lightbox">
+    <span class="lightbox-close" id="lb-close">[ close ]</span>
+    <span class="lightbox-prev" id="lb-prev">&lt;&lt;</span>
+    <img id="lb-img" src="" alt="">
+    <span class="lightbox-next" id="lb-next">&gt;&gt;</span>
+    <span class="lightbox-counter" id="lb-counter"></span>
+    <span class="lightbox-caption" id="lb-caption"></span>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
